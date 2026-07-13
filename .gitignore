@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Private data and generated outputs
+*.edf
+*.h5
+*.mat
+*.pth
+*.pt
+data/
+results/
+plots/
+
+# Local environment files
+.venv/
+venv/
+env/
+.DS_Store
+Thumbs.db
+

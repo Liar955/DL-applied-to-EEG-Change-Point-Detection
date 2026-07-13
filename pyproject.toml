@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eeg-cpd"
+version = "0.1.0"
+description = "Deep learning applied to EEG change point detection."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "h5py",
+  "torch",
+  "scikit-learn",
+  "scipy",
+  "matplotlib",
+  "ruptures",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

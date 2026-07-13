@@ -1,0 +1,10 @@
+{
+  "data_dir": "C:/Users/ZZKT1/Desktop/LIAR/Y4S1/FYP/fyp数据滤波后modified",
+  "labels_csv": "C:/Users/ZZKT1/Desktop/labels(2).csv",
+  "output_dir": "results",
+  "checkpoint": "results/cnn_eeg_improved_subset.pth",
+  "selected_subjects_json": null,
+  "subject_token": "47号",
+  "max_files": 6
+}
+
