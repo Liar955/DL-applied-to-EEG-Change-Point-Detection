@@ -1,23 +1,16 @@
 # Deep Learning Applied to EEG Change Point Detection
 
-This is a conservative modular cleanup of the original EEG change point
-detection research script. The goal is to keep the original working algorithm
-intact while exposing a clearer GitHub-facing project structure.
+## Research Motivation
 
-## What changed
+Epileptic EEG recordings often contain abrupt transitions related to seizure onset, propagation, and post-intervention changes. This project explores whether deep neural representations can be used as a feature space for change point detection in multi-channel rat EEG recordings.
 
-- The original script is preserved in `legacy/CPD_visualizaed_original.py`.
-- The importable core implementation is kept as `cpd_legacy_core.py`.
-- `src/eeg_cpd/` exposes the project through functional modules.
-- `scripts/run_modular.py` provides the recommended command-line entry point.
-- `notebooks/eeg_cpd_workflow.ipynb` provides a notebook-style research workflow.
-- Local paths are passed through command-line arguments or `configs/config.example.json`.
-- Generated plots and text outputs go under `results/`.
-- Private EEG files, H5 files, EDF files, and model checkpoints are ignored by Git.
+The workflow combines:
 
-This version intentionally avoids a large algorithm rewrite. The model, dataset,
-normalization, embedding extraction, and CPD functions still come from the
-original implementation, but the visible API is split by function.
+1. window-level EEG representation learning using a CNN-BiLSTM-Attention model;
+2. feature extraction from learned embeddings;
+3. kernel-based PELT change point detection in embedding space;
+4. statistical filtering of candidate change points;
+5. subject-level visualization across experimental stages.
 
 ## Project structure
 
@@ -43,7 +36,7 @@ original implementation, but the visible API is split by function.
 |   |-- config.example.json
 |   `-- selected_subjects.example.json
 |-- legacy/
-|   |-- CPD_visualizaed_original.py
+|   |-- CPD_visualized_original.py
 |   `-- README.md
 |-- matlab/
 |   `-- xfyp_data_modified.m
@@ -72,6 +65,8 @@ Copy the example config and edit paths if needed:
 ```bash
 copy configs\config.example.json configs\config.local.json
 ```
+
+Copy `configs/config.example.json` to `configs/config.local.json` and replace the placeholder paths with local paths.
 
 Important fields:
 
@@ -115,6 +110,17 @@ Visualize learned embeddings:
 python scripts/run_modular.py --config configs/config.local.json --mode embedding
 ```
 
+## Example Outputs
+
+### Subject-level probability curve with detected change points
+![Probability curve](figures/example_probability_curve.png)
+
+### Channel-wise EEG energy heatmap with detected change points
+![Energy heatmap](figures/example_energy_heatmap.png)
+
+### Learned embedding visualization
+![Embedding PCA](figures/example_embedding_pca.png)
+
 ## Modular API
 
 The recommended Python-facing modules are:
@@ -139,6 +145,17 @@ output_dir, files, subject_map = prepare_project(cfg)
 times, feats, file_idx = visualize_embeddings(cfg)
 ```
 
+## Expected Data Format
+
+Raw EEG recordings are not included in this repository. The pipeline expects filtered EEG recordings stored as `.h5` files with the following structure:
+
+```text
+/sig
+  shape: [channels, time_points]
+  attrs:
+    Fs: sampling frequency
+```
+
 ## Data source and exclusions
 
 The project is based on EEG data associated with a rat status epilepticus study
@@ -152,3 +169,10 @@ Raw EEG data and trained checkpoints are not included because of privacy and fil
 The blank control group and some recordings from the remaining groups were not
 used when EDF header or acquisition-format problems prevented reliable reading.
 These exclusions should be documented as data-quality filters.
+
+## Limitations
+
+- Raw EEG recordings and trained checkpoints are not included due to privacy and file-size constraints.
+- The current implementation preserves the original experimental code path and is not intended as a fully optimized software package.
+- Change points are detected in learned feature space and should be interpreted as candidate transitions requiring domain validation.
+- The pipeline is designed for the local H5 data organization used in the original study; adapting it to another EEG dataset may require changes to file naming and label parsing.
