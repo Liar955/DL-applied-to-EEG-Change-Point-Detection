@@ -1,10 +1,9 @@
 {
-  "data_dir": "C:/Users/ZZKT1/Desktop/LIAR/Y4S1/FYP/fyp数据滤波后modified",
-  "labels_csv": "C:/Users/ZZKT1/Desktop/labels(2).csv",
+  "data_dir": "path/to/filtered_h5_eeg_files",
+  "labels_csv": "path/to/labels.csv",
   "output_dir": "results",
   "checkpoint": "results/cnn_eeg_improved_subset.pth",
-  "selected_subjects_json": null,
-  "subject_token": "47号",
+  "selected_subjects_json": "configs/selected_subjects.example.json",
+  "subject_token": null,
   "max_files": 6
 }
-

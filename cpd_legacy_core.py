@@ -86,7 +86,7 @@ def _setup_chinese_font():
 _setup_chinese_font()
 
 # ========= Paths =========
-DATA_DIR = r"C:\Users\ZZKT1\Desktop\LIAR\Y4S1\FYP\fyp数据滤波后modified"
+DATA_DIR = r"path\to\filtered_h5_eeg_files"
 N_CLASSES = 3
 CPD_POS_CLASS = 1
 AUC_POS_CLASS = 1
@@ -220,7 +220,7 @@ def safe_item(x):
         return float(x)
 
 # ==== use labels.csv to override file-level labels ====
-CSV_PATH = r"C:\Users\ZZKT1\Desktop\labels(2).csv"  # Read filename-level annotations.
+CSV_PATH = r"path\to\labels.csv"  # Read filename-level annotations.
 LABEL_MAP = None
 
 def _norm_name(s: str) -> str:
@@ -2734,14 +2734,14 @@ def main():
     print(f"Embeddings shape: {Z.shape}")
     # run_audit_over_dir(DATA_DIR, model, out_csv="audit_invariance.csv")
     # Visualization or main-pipeline note.
-    plot_subject_three_phases("47号", ch_idx=0, sec=1.0, save_path=r"C:\Users\ZZKT1\Desktop\FYP_Project\three_phases_31.png")
+    plot_subject_three_phases("47号", ch_idx=0, sec=1.0, save_path=r"results\three_phases_example.png")
     boxplot_pe_by_timeslots("47号", ch_idx=0, win_sec=1.0, hop_sec=1.0, m=3, tau=1,
-                        save_path=r"C:\Users\ZZKT1\Desktop\FYP_Project\pe_boxplot_31.png")
+                        save_path=r"results\pe_boxplot_example.png")
     plot_embedding_2d(
         Z, file_idx, 
         methods=["pca", "tsne"],
         title_prefix="47号 Embeddings",
-        save_dir=r"C:\Users\ZZKT1\Desktop\FYP_Project"
+        save_dir=r"results"
     )
 #     cps_vis, sig_cat_vis, Fs_vis = _run_cpd_on_concat(
 #     model, files_for_vis,

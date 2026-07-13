@@ -9,7 +9,7 @@
 %  - All warnings use identifiers and formatted strings.
 
 %% Parameters
-rootDir   = 'C:\Users\ZZKT1\Desktop\LIAR\Y4S1\FYP\fyp数据';
+rootDir   = 'path/to/raw_edf_files';
 fileType  = '*.edf';
 filterOrd = 4;              % Butterworth filter order
 bandWant  = [200, 500];     % Target band (Hz)
