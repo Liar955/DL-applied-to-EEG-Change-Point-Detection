@@ -113,13 +113,13 @@ python scripts/run_modular.py --config configs/config.local.json --mode embeddin
 ## Example Outputs
 
 ### Subject-level probability curve with detected change points
-![Probability curve](figures/example_probability_curve.png)
+![Probability curve](plots/No.47%20A.png)
 
 ### Channel-wise EEG energy heatmap with detected change points
-![Energy heatmap](figures/example_energy_heatmap.png)
+![Energy heatmap](plots/channel47A.png)
 
 ### Learned embedding visualization
-![Embedding PCA](figures/example_embedding_pca.png)
+![Embedding PCA](plots/PCA_47.png)
 
 ## Modular API
 
